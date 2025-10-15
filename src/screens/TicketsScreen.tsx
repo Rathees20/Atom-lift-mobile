@@ -7,7 +7,6 @@ import {
   ScrollView,
   StatusBar,
   TextInput,
-  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { globalStyles } from '../styles/globalStyles';
@@ -32,17 +31,6 @@ const TicketsScreen: React.FC<TicketsScreenProps> = ({ onBack }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
   const [expandedTickets, setExpandedTickets] = useState<Set<number>>(new Set());
-  const [imageError, setImageError] = useState<boolean>(false);
-
-  // Try to load the filter image
-  const filterImageSource = (() => {
-    try {
-      return require('../assets/filter 1.png');
-    } catch (error) {
-      console.log('Could not load filter image:', error);
-      return null;
-    }
-  })();
 
   const ticketItems: TicketItem[] = [
     {
@@ -159,25 +147,7 @@ const TicketsScreen: React.FC<TicketsScreenProps> = ({ onBack }) => {
             <Ionicons name={showSearchInput ? "close" : "search"} size={24} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity style={globalStyles.ticketsFilterButton}>
-            {filterImageSource && !imageError ? (
-              <Image 
-                source={filterImageSource} 
-                style={{ 
-                  width: 24, 
-                  height: 24, 
-                  tintColor: '#fff',
-                  opacity: 1
-                }}
-                resizeMode="contain"
-                onError={() => {
-                  console.log('Failed to load filter image');
-                  setImageError(true);
-                }}
-                onLoad={() => console.log('Filter image loaded successfully')}
-              />
-            ) : (
-              <Ionicons name="filter" size={24} color="#fff" />
-            )}
+            <Ionicons name="filter" size={24} color="#fff" />
           </TouchableOpacity>
         </View>
       </View>
