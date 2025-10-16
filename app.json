@@ -28,7 +28,7 @@
     "web": {
       "favicon": "./src/assets/favicon.png",
       "bundler": "metro",
-      "output": "static"
+      "output": "single"
     },
     "plugins": [
       "expo-font",
@@ -56,9 +56,6 @@
       "ios",
       "android",
       "web"
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }
