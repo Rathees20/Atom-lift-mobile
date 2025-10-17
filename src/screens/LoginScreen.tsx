@@ -120,6 +120,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
           contentContainerStyle={globalStyles.loginContent}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
+          style={{ flex: 1 }}
         >
           <View style={globalStyles.loginHeader}>
             <Text style={globalStyles.loginTitle}>Welcome Back</Text>

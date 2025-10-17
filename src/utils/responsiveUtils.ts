@@ -92,9 +92,18 @@ export const getSafeAreaInsets = () => {
     };
   }
   
+  // For mobile devices, ensure proper safe area handling
+  const screenSize = getScreenSize();
+  const baseTop = hasNotchDevice ? 44 : 20;
+  const baseBottom = hasNotchDevice ? 34 : 0;
+  
+  // Adjust for smaller screens
+  const topInset = screenSize === 'xs' ? Math.max(baseTop - 4, 16) : baseTop;
+  const bottomInset = screenSize === 'xs' ? Math.max(baseBottom - 4, 0) : baseBottom;
+  
   return {
-    top: hasNotchDevice ? 44 : 20,
-    bottom: hasNotchDevice ? 34 : 0,
+    top: topInset,
+    bottom: bottomInset,
     left: 0,
     right: 0,
   };
@@ -126,7 +135,12 @@ export const getGridColumns = (): number => {
 // Get responsive spacing
 export const getSpacing = (multiplier: number = 1): number => {
   const baseSpacing = 8;
-  return responsiveSize(baseSpacing * multiplier);
+  const screenSize = getScreenSize();
+  
+  // Adjust spacing for smaller screens
+  const spacingMultiplier = screenSize === 'xs' ? 0.8 : screenSize === 'sm' ? 0.9 : 1;
+  
+  return responsiveSize(baseSpacing * multiplier * spacingMultiplier);
 };
 
 // Get responsive border radius
@@ -184,5 +198,42 @@ export const createResponsiveStyle = (styles: any) => {
     ...(deviceType === 'phone' && styles.phone),
     ...(deviceType === 'tablet' && styles.tablet),
     ...(deviceType === 'desktop' && styles.desktop),
+  };
+};
+
+// Mobile-specific layout helper
+export const getMobileLayoutStyle = () => {
+  const screenSize = getScreenSize();
+  const deviceType = getDeviceType();
+  
+  const baseStyle = {
+    width: '100%',
+    alignSelf: 'stretch' as const,
+  };
+  
+  if (deviceType === 'phone') {
+    return {
+      ...baseStyle,
+      // Ensure proper mobile layout
+      flex: 1,
+      ...(screenSize === 'xs' && {
+        paddingHorizontal: getSpacing(1.5),
+      }),
+      ...(screenSize === 'sm' && {
+        paddingHorizontal: getSpacing(2),
+      }),
+    };
+  }
+  
+  return baseStyle;
+};
+
+// Container style helper for consistent mobile alignment
+export const getContainerStyle = () => {
+  return {
+    flex: 1,
+    width: '100%',
+    alignSelf: 'stretch',
+    backgroundColor: '#f8f9fa',
   };
 };

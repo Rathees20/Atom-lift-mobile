@@ -31,6 +31,8 @@ export const globalStyles = StyleSheet.create({
   loginContainer: {
     flex: 1,
     backgroundColor: '#f8f9fa',
+    width: '100%',
+    alignSelf: 'stretch',
   },
   loginKeyboardView: {
     flex: 1,
@@ -40,6 +42,8 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: getSpacing(3.75),
     paddingVertical: getSpacing(2),
+    width: '100%',
+    alignSelf: 'stretch',
   },
   loginHeader: {
     alignItems: 'center',
@@ -57,6 +61,7 @@ export const globalStyles = StyleSheet.create({
   },
   loginForm: {
     width: '100%',
+    alignSelf: 'stretch',
   },
   loginInputContainer: {
     flexDirection: 'row',
@@ -166,6 +171,8 @@ export const globalStyles = StyleSheet.create({
   homeContainer: {
     flex: 1,
     backgroundColor: '#f8f9fa',
+    width: '100%',
+    alignSelf: 'stretch',
   },
   homeHeader: {
     backgroundColor: '#3498db',
@@ -182,12 +189,16 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: getSpacing(2.5),
     paddingTop: getSpacing(2.5),
     paddingBottom: SAFE_AREA_INSETS.bottom + getSpacing(2),
+    width: '100%',
+    alignSelf: 'stretch',
   },
   homeMenuGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     marginBottom: 30,
+    width: '100%',
+    alignSelf: 'stretch',
   },
   homeMenuCard: {
     width: '48%',
@@ -222,6 +233,8 @@ export const globalStyles = StyleSheet.create({
   },
   homeActionButtons: {
     marginBottom: 20,
+    width: '100%',
+    alignSelf: 'stretch',
   },
   homeActionButton: {
     backgroundColor: '#3498db',
@@ -230,6 +243,8 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: getSpacing(1.5),
     minHeight: getTouchTargetSize(48),
+    width: '100%',
+    alignSelf: 'stretch',
     shadowColor: '#3498db',
     shadowOffset: {
       width: 0,
@@ -1798,5 +1813,40 @@ export const globalStyles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+
+  // Mobile-specific alignment fixes
+  mobileContainer: {
+    flex: 1,
+    width: '100%',
+    alignSelf: 'stretch',
+  },
+  mobileScrollView: {
+    flex: 1,
+    width: '100%',
+  },
+  mobileContent: {
+    flexGrow: 1,
+    width: '100%',
+    alignSelf: 'stretch',
+  },
+  mobileGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    width: '100%',
+    alignSelf: 'stretch',
+  },
+  mobileCard: {
+    width: '48%',
+    alignSelf: 'stretch',
+  },
+  mobileButton: {
+    width: '100%',
+    alignSelf: 'stretch',
+  },
+  mobileInput: {
+    width: '100%',
+    alignSelf: 'stretch',
   },
 });

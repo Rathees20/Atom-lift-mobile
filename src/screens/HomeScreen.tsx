@@ -493,7 +493,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout, mobileNumber }) => {
         </View>
       </View>
 
-      <ScrollView style={globalStyles.homeContent} showsVerticalScrollIndicator={false}>
+      <ScrollView 
+        style={globalStyles.homeContent} 
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Menu Cards Grid */}
         <View style={globalStyles.homeMenuGrid}>
           {menuItems.map((item) => (

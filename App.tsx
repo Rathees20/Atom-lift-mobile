@@ -20,7 +20,12 @@ export default function App() {
   };
 
   const AppContent = () => (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#3498db' }}>
+    <SafeAreaView style={{ 
+      flex: 1, 
+      backgroundColor: '#3498db',
+      width: '100%',
+      alignSelf: 'stretch'
+    }}>
       <StatusBar 
         style="light" 
         backgroundColor="#3498db"
@@ -38,7 +43,7 @@ export default function App() {
   );
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{ flex: 1, width: '100%' }}>
       <AppContent />
     </SafeAreaProvider>
   );
