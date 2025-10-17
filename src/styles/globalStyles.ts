@@ -1,4 +1,18 @@
-import { StyleSheet, Platform, StatusBar } from 'react-native';
+import { StyleSheet, Platform, StatusBar, Dimensions } from 'react-native';
+import { 
+  responsiveWidth, 
+  responsiveHeight, 
+  responsiveFontSize, 
+  responsiveSize,
+  getSafeAreaInsets,
+  getTouchTargetSize,
+  getSpacing,
+  getBorderRadius,
+  getScreenDimensions
+} from '../utils/responsiveUtils';
+
+// Get screen dimensions
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 // Get status bar height for consistent header padding
 const getStatusBarHeight = (): number => {
@@ -10,6 +24,7 @@ const getStatusBarHeight = (): number => {
 };
 
 const HEADER_PADDING_TOP = getStatusBarHeight() + 10;
+const SAFE_AREA_INSETS = getSafeAreaInsets();
 
 export const globalStyles = StyleSheet.create({
   // Login Screen Styles
@@ -21,22 +36,23 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
   },
   loginContent: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
-    paddingHorizontal: 30,
+    paddingHorizontal: getSpacing(3.75),
+    paddingVertical: getSpacing(2),
   },
   loginHeader: {
     alignItems: 'center',
     marginBottom: 40,
   },
   loginTitle: {
-    fontSize: 32,
+    fontSize: responsiveFontSize(32),
     fontWeight: 'bold',
     color: '#2c3e50',
-    marginBottom: 8,
+    marginBottom: getSpacing(1),
   },
   loginSubtitle: {
-    fontSize: 16,
+    fontSize: responsiveFontSize(16),
     color: '#7f8c8d',
   },
   loginForm: {
@@ -66,9 +82,10 @@ export const globalStyles = StyleSheet.create({
   },
   loginInput: {
     flex: 1,
-    fontSize: 16,
+    fontSize: responsiveFontSize(16),
     color: '#2c3e50',
-    paddingVertical: 16,
+    paddingVertical: getSpacing(2),
+    minHeight: getTouchTargetSize(48),
   },
   loginEyeIcon: {
     padding: 4,
@@ -152,9 +169,9 @@ export const globalStyles = StyleSheet.create({
   },
   homeHeader: {
     backgroundColor: '#3498db',
-    paddingTop: HEADER_PADDING_TOP,
-    paddingBottom: 20,
-    paddingHorizontal: 20,
+    paddingTop: SAFE_AREA_INSETS.top + getSpacing(1),
+    paddingBottom: getSpacing(2.5),
+    paddingHorizontal: getSpacing(2.5),
   },
   homeHeaderBottom: {
     flexDirection: 'row',
@@ -162,8 +179,9 @@ export const globalStyles = StyleSheet.create({
   },
   homeContent: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingHorizontal: getSpacing(2.5),
+    paddingTop: getSpacing(2.5),
+    paddingBottom: SAFE_AREA_INSETS.bottom + getSpacing(2),
   },
   homeMenuGrid: {
     flexDirection: 'row',
@@ -174,10 +192,11 @@ export const globalStyles = StyleSheet.create({
   homeMenuCard: {
     width: '48%',
     backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 20,
+    borderRadius: getBorderRadius(12),
+    padding: getSpacing(2.5),
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: getSpacing(2),
+    minHeight: getTouchTargetSize(120),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -188,15 +207,15 @@ export const globalStyles = StyleSheet.create({
     elevation: 3,
   },
   homeIconContainer: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: responsiveSize(60),
+    height: responsiveSize(60),
+    borderRadius: responsiveSize(30),
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: getSpacing(1.5),
   },
   homeMenuTitle: {
-    fontSize: 16,
+    fontSize: responsiveFontSize(16),
     fontWeight: '600',
     color: '#2c3e50',
     textAlign: 'center',
@@ -206,10 +225,11 @@ export const globalStyles = StyleSheet.create({
   },
   homeActionButton: {
     backgroundColor: '#3498db',
-    borderRadius: 12,
-    paddingVertical: 16,
+    borderRadius: getBorderRadius(12),
+    paddingVertical: getSpacing(2),
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: getSpacing(1.5),
+    minHeight: getTouchTargetSize(48),
     shadowColor: '#3498db',
     shadowOffset: {
       width: 0,
@@ -221,7 +241,7 @@ export const globalStyles = StyleSheet.create({
   },
   homeActionButtonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: responsiveFontSize(16),
     fontWeight: '600',
   },
   homeStatusContainer: {

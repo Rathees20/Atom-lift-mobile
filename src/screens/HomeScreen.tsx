@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
-  StatusBar,
   Modal,
   Dimensions,
   TextInput,
@@ -485,8 +484,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onLogout, mobileNumber }) => {
 
   return (
     <SafeAreaView style={globalStyles.homeContainer}>
-      <StatusBar barStyle="light-content" backgroundColor="#3498db" />
-      
       {/* Header */}
       <View style={globalStyles.homeHeader}>
         <View style={globalStyles.homeHeaderBottom}>

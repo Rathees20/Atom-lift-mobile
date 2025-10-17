@@ -8,6 +8,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LoginScreenProps } from '../../types';
@@ -113,8 +114,13 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
       <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={globalStyles.loginKeyboardView}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
       >
-        <View style={globalStyles.loginContent}>
+        <ScrollView 
+          contentContainerStyle={globalStyles.loginContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
           <View style={globalStyles.loginHeader}>
             <Text style={globalStyles.loginTitle}>Welcome Back</Text>
             <Text style={globalStyles.loginSubtitle}>Sign in to your account</Text>
@@ -185,7 +191,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
               </>
             )}
           </View>
-        </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

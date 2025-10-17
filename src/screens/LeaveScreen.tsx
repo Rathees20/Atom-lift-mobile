@@ -7,7 +7,6 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  CheckBox,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { globalStyles } from '../styles/globalStyles';
@@ -61,11 +60,16 @@ const LeaveScreen: React.FC<LeaveScreenProps> = ({ onBack, onApplyLeave }) => {
       <ScrollView style={globalStyles.leaveFormContent} showsVerticalScrollIndicator={false}>
         {/* Half Day Checkbox */}
         <View style={globalStyles.leaveCheckboxContainer}>
-          <CheckBox
-            value={formData.halfDay}
-            onValueChange={(value) => handleInputChange('halfDay', value)}
+          <TouchableOpacity
+            onPress={() => handleInputChange('halfDay', !formData.halfDay)}
             style={globalStyles.leaveCheckbox}
-          />
+          >
+            <Ionicons 
+              name={formData.halfDay ? "checkbox" : "square-outline"} 
+              size={24} 
+              color={formData.halfDay ? "#3498db" : "#bdc3c7"} 
+            />
+          </TouchableOpacity>
           <Text style={globalStyles.leaveCheckboxLabel}>Half Day</Text>
         </View>
 

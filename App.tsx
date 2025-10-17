@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Platform } from 'react-native';
+import { Platform, SafeAreaView } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoginScreen from './src/screens/LoginScreen';
 import HomeScreen from './src/screens/HomeScreen';
 
@@ -18,12 +19,12 @@ export default function App() {
     setIsLoggedIn(false);
   };
 
-  return (
-    <>
+  const AppContent = () => (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#3498db' }}>
       <StatusBar 
         style="light" 
         backgroundColor="#3498db"
-        translucent={false}
+        translucent={Platform.OS === 'android'}
       />
       {isLoggedIn ? (
         <HomeScreen 
@@ -33,6 +34,12 @@ export default function App() {
       ) : (
         <LoginScreen onLogin={handleLogin} />
       )}
-    </>
+    </SafeAreaView>
+  );
+
+  return (
+    <SafeAreaProvider>
+      <AppContent />
+    </SafeAreaProvider>
   );
 }
